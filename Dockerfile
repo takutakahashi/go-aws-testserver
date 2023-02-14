@@ -9,7 +9,7 @@ COPY main.go main.go
 
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o app main.go
 
-FROM gcr.io/distroless/static:nonroot
+FROM ubuntu
 WORKDIR /
 COPY --from=builder /workspace/app .
 
