@@ -33,7 +33,8 @@ func Start() error {
 		input := &s3.ListBucketsInput{}
 		result, err := svc.ListBuckets(input)
 		if err != nil {
-			return err
+			logrus.Error(err)
+			return c.String(503, err.Error())
 		}
 		return c.String(http.StatusOK, result.GoString())
 	})
