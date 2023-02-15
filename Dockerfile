@@ -12,5 +12,6 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o app main.go
 FROM ubuntu
 WORKDIR /
 COPY --from=builder /workspace/app .
+RUN apt update && apt install -y ca-certificates
 
 ENTRYPOINT ["/app"]
